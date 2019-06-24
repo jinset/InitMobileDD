@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>¿Seguro que desea eliminar a {{data.name}}?</h1>
+<div mat-dialog-actions class="row">
+    <div class="col-6">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+    <div class="col-6">
+      <button mat-button (click)="acceptDelete()" cdkFocusInitial>Confirm</button>
+    </div>
+</div>

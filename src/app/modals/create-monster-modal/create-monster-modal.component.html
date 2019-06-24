@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Crear monstruos</h1>
+<div mat-dialog-content>
+    <div class="form-group">
+        <input type="number" class="form-control" [(ngModel)]="numberMonster" placeholder="Cantidad de monstruos">
+      </div>
+      <div class="form-group" *ngIf="numberMonster === 1">
+        <input type="text" class="form-control" [(ngModel)]="nameMonster" placeholder="Monster name">
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" [(ngModel)]="initMonster" placeholder="Bonus Iniciativa">
+      </div>
+      <div class="form-group ">
+        <input type="number" class="form-control" [(ngModel)]="healPoints" placeholder="Hp monstruos">
+      </div>
+</div>
+<div mat-dialog-actions class="row">
+    <div class="col-6">
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+    </div>
+    <div class="col-6">
+      <button mat-button (click)="openGeneratedMonsterModal(initMonster,numberMonster,healPoints,nameMonster)" cdkFocusInitial>Crear</button>
+    </div>
+</div>
