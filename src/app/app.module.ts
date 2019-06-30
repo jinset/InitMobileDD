@@ -9,38 +9,29 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
 import { FormsModule } from '@angular/forms';
-
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatIconModule} from '@angular/material';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderModule } from 'ngx-order-pipe';
+import { MatDialogModule } from '@angular/material/dialog';
 
-import {MatListModule} from '@angular/material/list';
-import {MatDialogModule} from '@angular/material/dialog';
-
-import {MatGridListModule} from '@angular/material/grid-list';
 import { InitUIComponent } from './init-ui/init-ui.component';
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
 import { CreateMonsterModalComponent } from './modals/create-monster-modal/create-monster-modal.component';
 
 @NgModule({
-  declarations: [AppComponent,InitUIComponent,
+  declarations: [AppComponent, InitUIComponent,
     ConfirmModalComponent,
     CreateMonsterModalComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,OrderModule,
-    AppRoutingModule,FormsModule,MatGridListModule,
-    BrowserAnimationsModule,NoopAnimationsModule, MatButtonModule, MatCheckboxModule,MatIconModule,DragDropModule,MatListModule,MatDialogModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, OrderModule,
+    AppRoutingModule, FormsModule,
+    BrowserAnimationsModule, NoopAnimationsModule, MatDialogModule],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmModalComponent,CreateMonsterModalComponent]
+  entryComponents: [ConfirmModalComponent, CreateMonsterModalComponent]
 })
-export class AppModule {}
+export class AppModule { }

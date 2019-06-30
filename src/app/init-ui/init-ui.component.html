@@ -1,15 +1,25 @@
-
+ <ion-list>
+    <ion-list-header>Seleccionar historia</ion-list-header>
+    <ion-item>
+      <ion-label>Historia: </ion-label>
+      <ion-select [(ngModel)]="selectStory"  [selectedText]="selectStory" (ionChange)="optionsFn()" placeholder="Selecionar historia ">
+        <ion-select-option value="{{item.name}}" *ngFor="let item of storyList.list">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 <div class="row p-2">
   <div class="col-6">
-    <h2>Iniciativa</h2>
+    <button (click)="resetFunction()">reset</button>
   </div>
   <div class="col-6">
-    <button type="button" class="btn btn-primary float-right" (click)="openGeneratedMonsterModal()">
+    <button  [disabled]="!selectStory" type="button" class="btn btn-primary float-right" (click)="openGeneratedMonsterModal()">
       Crear monstruos
     </button>
   </div>
 </div>
+
 <div class="container">
+  
   <div class="row " *ngFor="let pj of pjList| orderBy: order : true : false;let i = index; let odd=odd; let even=even;"
     [ngClass]="{ odd: odd, even: even }">
     <div class="col-4 p-2">
@@ -17,12 +27,11 @@
     </div>
     <div class="col-4 p-2">
       <b>HP: </b><span
-        [ngClass]="{'hp-live' : pj.hp > 0, 'hp-death' : pj.hp < 0, 'hp-null' : pj.hp === 0}">{{pj.hp}}</span>
+        [ngClass]="{'hp-live' : pj.hp > 0, 'hp-death' : pj.hp < 0, 'hp-null' : pj.hp === 0}">{{pj.hp}} </span><span>/ {{pj.maxhp}}</span>
     </div>
     <div class="col-4 p-2">
       <b>Init: </b><span>{{pj.init}}</span>
     </div>
-    <div class="w-100"></div>
     <div class="col-6 text-center">
       <div class="input-group ">
         <div class="input-group-prepend">
@@ -42,7 +51,22 @@
       </div>
     </div>
     <div class="col-2 text-center">
-        <ion-icon class="text-danger h2"*ngIf="pj.monster"(click)="deleteElement(pj.name)" name="trash"></ion-icon>
+        <ion-icon class="text-danger h2" *ngIf="pj.monster" (click)="deleteElement(pj.name)" name="trash"></ion-icon>
     </div>
   </div>
 </div>
+
+
+<!-- <ion-list>
+  <ion-item-sliding class="row " *ngFor="let pj of pjList| orderBy: order : true : false;let i = index;">
+    <ion-item >
+        {{pj.name}}
+    </ion-item>
+    <ion-item-options *ngIf="!pj.monster">
+      <ion-item-option color="danger"  >
+        <ion-icon style="font-size: x-large" slot="start" name="trash" (click)="deleteElement(pj.name)"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list> -->
+
