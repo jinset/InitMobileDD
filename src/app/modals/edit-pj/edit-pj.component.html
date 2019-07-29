@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-row align-items-start>
+    <ion-col size="12">
+      <ion-buttons (click)='dismiss(false)' style="font-size: 35px;">
+        <ion-icon name="close"></ion-icon>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+  <ion-grid >
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input [(ngModel)]="name" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="stacked">Level</ion-label>
+          <ion-input [(ngModel)]="level" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="stacked">HP</ion-label>
+          <ion-input [(ngModel)]="maxHp" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="stacked">Init</ion-label>
+          <ion-input [(ngModel)]="init" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="created()">
+          Accept
+        </ion-button>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+
+
+</ion-content>

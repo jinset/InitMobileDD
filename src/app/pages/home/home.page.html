@@ -1,0 +1,15 @@
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let story of storiesList " (click)="goToStory(story)">
+      <ion-card style="width: 100%">
+        <ion-card-header>
+          <ion-card-title>{{story.story.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            Keep close to Nature's heart... and break clear away, once in awhile,
+            and climb a mountain or spend a week in the woods. Wash your spirit clean.
+          </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>  
+</ion-content>

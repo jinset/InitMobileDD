@@ -1,0 +1,42 @@
+.sepretor-or {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+  .sepretor-or p {
+    color: black  ;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .sepretor-or p::before,
+  .sepretor-or p::after {
+    float: left;
+    width: -webkit-calc(48% - 10px);
+    width: -moz-calc(48% - 10px);
+    width: calc(48% - 10px);
+    display: inline-block;
+    height: 1px;
+    margin-top: 8px;
+    background-image: url('../../../assets/seprator.png');
+    background-repeat: repeat;
+    content: '';
+  }
+  .sepretor-or p::after {
+    float: right;
+  }
+
+  .google{
+    background-color: #d13d35;
+    width: 100%;
+    color: #ffffff;
+    ion-icon{
+      padding: 5px 10px 0 0 !important;
+    }
+  }
+
+  .socialLogin {
+    float: left;
+    width: 100%;
+    text-align: center;
+  }

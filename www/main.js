@@ -833,9 +833,17 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./characters-page/characters-page.module": [
+		"./src/app/characters-page/characters-page.module.ts",
+		"characters-page-characters-page-module"
+	],
 	"./home/home.module": [
 		"./src/app/home/home.module.ts",
 		"home-home-module"
+	],
+	"./login/login.module": [
+		"./src/app/login/login.module.ts",
+		"login-login-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -879,6 +887,8 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+    { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+    { path: 'characters-page', loadChildren: './characters-page/characters-page.module#CharactersPagePageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -905,7 +915,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-content>\n    <app-init-ui></app-init-ui>\n  </ion-content>\n</ion-app>"
+module.exports = "<ion-app>\n  <ion-header>\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button></ion-back-button>\n      </ion-buttons>\n      <ion-title>Iniciativa</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n    <app-init-ui></app-init-ui>\n    <!-- <app-login></app-login> -->\n  </ion-content>\n</ion-app>"
 
 /***/ }),
 
@@ -982,9 +992,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var ngx_order_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-order-pipe */ "./node_modules/ngx-order-pipe/ngx-order-pipe.es5.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _init_ui_init_ui_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./init-ui/init-ui.component */ "./src/app/init-ui/init-ui.component.ts");
-/* harmony import */ var _modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./modals/confirm-modal/confirm-modal.component */ "./src/app/modals/confirm-modal/confirm-modal.component.ts");
-/* harmony import */ var _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modals/create-monster-modal/create-monster-modal.component */ "./src/app/modals/create-monster-modal/create-monster-modal.component.ts");
+/* harmony import */ var _ionic_native_fingerprint_aio_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/fingerprint-aio/ngx */ "./node_modules/@ionic-native/fingerprint-aio/ngx/index.js");
+/* harmony import */ var _init_ui_init_ui_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./init-ui/init-ui.component */ "./src/app/init-ui/init-ui.component.ts");
+/* harmony import */ var _modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modals/confirm-modal/confirm-modal.component */ "./src/app/modals/confirm-modal/confirm-modal.component.ts");
+/* harmony import */ var _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modals/create-monster-modal/create-monster-modal.component */ "./src/app/modals/create-monster-modal/create-monster-modal.component.ts");
+
 
 
 
@@ -1007,22 +1019,137 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _init_ui_init_ui_component__WEBPACK_IMPORTED_MODULE_13__["InitUIComponent"],
-                _modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_14__["ConfirmModalComponent"],
-                _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_15__["CreateMonsterModalComponent"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _init_ui_init_ui_component__WEBPACK_IMPORTED_MODULE_14__["InitUIComponent"],
+                _modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_15__["ConfirmModalComponent"],
+                _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_16__["CreateMonsterModalComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], ngx_order_pipe__WEBPACK_IMPORTED_MODULE_11__["OrderModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["NoopAnimationsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_12__["MatDialogModule"]],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
+                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_fingerprint_aio_ngx__WEBPACK_IMPORTED_MODULE_13__["FingerprintAIO"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
-            entryComponents: [_modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_14__["ConfirmModalComponent"], _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_15__["CreateMonsterModalComponent"]]
+            entryComponents: [_modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_15__["ConfirmModalComponent"], _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_16__["CreateMonsterModalComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/data/datPJ.ts":
+/*!*******************************!*\
+  !*** ./src/app/data/datPJ.ts ***!
+  \*******************************/
+/*! exports provided: DatPj */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatPj", function() { return DatPj; });
+var DatPj = /** @class */ (function () {
+    function DatPj() {
+        this.list = [
+            {
+                name: "Gigantes",
+                players: [
+                    {
+                        "name": "Bartra",
+                        "init": 6,
+                        "hp": 55,
+                        "maxhp": 55,
+                        "monster": false
+                    },
+                    {
+                        "name": "Drako",
+                        "init": 4,
+                        "hp": 35,
+                        "maxhp": 35,
+                        "monster": false
+                    },
+                    {
+                        "name": "Thyr",
+                        "init": 7,
+                        "hp": 76,
+                        "maxhp": 76,
+                        "monster": false
+                    },
+                    {
+                        "name": "Ira",
+                        "init": 3,
+                        "hp": 57,
+                        "maxhp": 57,
+                        "monster": false
+                    },
+                    {
+                        "name": "Tar",
+                        "init": 4,
+                        "hp": 45,
+                        "maxhp": 45,
+                        "monster": false
+                    },
+                    {
+                        "name": "Mere",
+                        "init": 5,
+                        "hp": 49,
+                        "maxhp": 49,
+                        "monster": false
+                    },
+                    {
+                        "name": "Ariel",
+                        "init": 8,
+                        "hp": 22,
+                        "maxhp": 22,
+                        "monster": false
+                    }
+                ]
+            }, {
+                name: "Piratas",
+                players: [
+                    {
+                        "name": "Jinset",
+                        "init": 1,
+                        "hp": 69,
+                        "maxhp": 69,
+                        "monster": false
+                    },
+                    {
+                        "name": "Eudes",
+                        "init": 2,
+                        "hp": 57,
+                        "maxhp": 57,
+                        "monster": false
+                    },
+                    {
+                        "name": "Nagini",
+                        "init": 4,
+                        "hp": 41,
+                        "maxhp": 41,
+                        "monster": false
+                    },
+                    {
+                        "name": "Aremis",
+                        "init": 5,
+                        "hp": 54,
+                        "maxhp": 54,
+                        "monster": false
+                    },
+                    {
+                        "name": "kanrra",
+                        "init": 2,
+                        "hp": 61,
+                        "maxhp": 61,
+                        "monster": false
+                    }
+                ]
+            }
+        ];
+    }
+    return DatPj;
 }());
 
 
@@ -1047,7 +1174,7 @@ module.exports = ".example-container {\r\n    width: 400px;\r\n    max-width: 10
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-list>\n    <ion-list-header>Seleccionar historia</ion-list-header>\n  \n    <ion-item>\n      <ion-label>Historia: </ion-label>\n      <ion-select [(ngModel)]=\"selectStory\"  [selectedText]=\"selectStory\" (ionChange)=\"optionsFn()\" placeholder=\"Selecionar historia \">\n        <ion-select-option value=\"{{item.name}}\" *ngFor=\"let item of storyList\">{{item.name}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n  </ion-list>\n\n\n\n\n\n\n<div class=\"row p-2\">\n  <div class=\"col-6\">\n    <h2>Iniciativa</h2>\n  </div>\n  <div class=\"col-6\">\n    <button  [disabled]=\"!selectStory\" type=\"button\" class=\"btn btn-primary float-right\" (click)=\"openGeneratedMonsterModal()\">\n      Crear monstruos\n    </button>\n  </div>\n</div>\n<div class=\"container\">\n  <div class=\"row \" *ngFor=\"let pj of pjList| orderBy: order : true : false;let i = index; let odd=odd; let even=even;\"\n    [ngClass]=\"{ odd: odd, even: even }\">\n    <div class=\"col-4 p-2\">\n      <span><b>{{pj.name}}</b></span>\n    </div>\n    <div class=\"col-4 p-2\">\n      <b>HP: </b><span\n        [ngClass]=\"{'hp-live' : pj.hp > 0, 'hp-death' : pj.hp < 0, 'hp-null' : pj.hp === 0}\">{{pj.hp}}</span>\n    </div>\n    <div class=\"col-4 p-2\">\n      <b>Init: </b><span>{{pj.init}}</span>\n    </div>\n    <div class=\"w-100\"></div>\n    <div class=\"col-6 text-center\">\n      <div class=\"input-group \">\n        <div class=\"input-group-prepend\">\n          <button class=\"btn btn-success\" type=\"button\" (click)=\"healEvent(pj, hit)\">+</button>\n          <input class=\"form-control\" type=\"number\" #hit [value]=\"hit\" id=\"{{'hitId'+i}}\">\n          <button class=\"btn btn-danger\" type=\"button\" (click)=\"damageEvent(pj, hit)\">-</button>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-4 text-center\">\n      <div class=\"input-group mb-3\" *ngIf=\"!pj.monster\">\n        <div class=\"input-group-prepend\">\n          <button class=\"btn btn-secondary\" type=\"button\" (click)=\"addInit(pj, init)\">+</button>\n        </div>\n        <input class=\"form-control\" type=\"number\" #init [value]=\"init\" id=\"{{'initId'+i}}\">\n      </div>\n    </div>\n    <div class=\"col-2 text-center\">\n        <ion-icon class=\"text-danger h2\"*ngIf=\"pj.monster\"(click)=\"deleteElement(pj.name)\" name=\"trash\"></ion-icon>\n    </div>\n  </div>\n</div>"
+module.exports = " <ion-list>\n    <ion-list-header>Seleccionar historia</ion-list-header>\n    <ion-item>\n      <ion-label>Historia: </ion-label>\n      <ion-select [(ngModel)]=\"selectStory\"  [selectedText]=\"selectStory\" (ionChange)=\"optionsFn()\" placeholder=\"Selecionar historia \">\n        <ion-select-option value=\"{{item.name}}\" *ngFor=\"let item of storyList.list\">{{item.name}}</ion-select-option>\n      </ion-select>\n    </ion-item>\n  </ion-list>\n<div class=\"row p-2\">\n  <div class=\"col-6\">\n    <button (click)=\"resetFunction()\">reset</button>\n  </div>\n  <div class=\"col-6\">\n    <button  [disabled]=\"!selectStory\" type=\"button\" class=\"btn btn-primary float-right\" (click)=\"openGeneratedMonsterModal()\">\n      Crear monstruos\n    </button>\n  </div>\n</div>\n\n<div class=\"container\">\n  \n  <div class=\"row \" *ngFor=\"let pj of pjList| orderBy: order : true : false;let i = index; let odd=odd; let even=even;\"\n    [ngClass]=\"{ odd: odd, even: even }\">\n    <div class=\"col-4 p-2\">\n      <span><b>{{pj.name}}</b></span>\n    </div>\n    <div class=\"col-4 p-2\">\n      <b>HP: </b><span\n        [ngClass]=\"{'hp-live' : pj.hp > 0, 'hp-death' : pj.hp < 0, 'hp-null' : pj.hp === 0}\">{{pj.hp}} </span><span>/ {{pj.maxhp}}</span>\n    </div>\n    <div class=\"col-4 p-2\">\n      <b>Init: </b><span>{{pj.init}}</span>\n    </div>\n    <div class=\"col-6 text-center\">\n      <div class=\"input-group \">\n        <div class=\"input-group-prepend\">\n          <button class=\"btn btn-success\" type=\"button\" (click)=\"healEvent(pj, hit)\">+</button>\n          <input class=\"form-control\" type=\"number\" #hit [value]=\"hit\" id=\"{{'hitId'+i}}\">\n          <button class=\"btn btn-danger\" type=\"button\" (click)=\"damageEvent(pj, hit)\">-</button>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-4 text-center\">\n      <div class=\"input-group mb-3\" *ngIf=\"!pj.monster\">\n        <div class=\"input-group-prepend\">\n          <button class=\"btn btn-secondary\" type=\"button\" (click)=\"addInit(pj, init)\">+</button>\n        </div>\n        <input class=\"form-control\" type=\"number\" #init [value]=\"init\" id=\"{{'initId'+i}}\">\n      </div>\n    </div>\n    <div class=\"col-2 text-center\">\n        <ion-icon class=\"text-danger h2\" *ngIf=\"pj.monster\" (click)=\"deleteElement(pj.name)\" name=\"trash\"></ion-icon>\n    </div>\n  </div>\n</div>\n\n\n<!-- <ion-list>\n  <ion-item-sliding class=\"row \" *ngFor=\"let pj of pjList| orderBy: order : true : false;let i = index;\">\n    <ion-item >\n        {{pj.name}}\n    </ion-item>\n    <ion-item-options *ngIf=\"!pj.monster\">\n      <ion-item-option color=\"danger\"  >\n        <ion-icon style=\"font-size: x-large\" slot=\"start\" name=\"trash\" (click)=\"deleteElement(pj.name)\"></ion-icon>\n      </ion-item-option>\n    </ion-item-options>\n  </ion-item-sliding>\n</ion-list> -->\n\n"
 
 /***/ }),
 
@@ -1063,9 +1190,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InitUIComponent", function() { return InitUIComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modals/confirm-modal/confirm-modal.component */ "./src/app/modals/confirm-modal/confirm-modal.component.ts");
-/* harmony import */ var _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modals/create-monster-modal/create-monster-modal.component */ "./src/app/modals/create-monster-modal/create-monster-modal.component.ts");
+/* harmony import */ var _data_datPJ__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/datPJ */ "./src/app/data/datPJ.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modals/confirm-modal/confirm-modal.component */ "./src/app/modals/confirm-modal/confirm-modal.component.ts");
+/* harmony import */ var _modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modals/create-monster-modal/create-monster-modal.component */ "./src/app/modals/create-monster-modal/create-monster-modal.component.ts");
+
 
 
 
@@ -1074,106 +1203,26 @@ __webpack_require__.r(__webpack_exports__);
 var InitUIComponent = /** @class */ (function () {
     function InitUIComponent(dialog) {
         this.dialog = dialog;
-        this.title = 'InitDM';
-        this.monsterNumber = 0;
-        this.storyList = [
-            {
-                players: [
-                    {
-                        name: "Bartra",
-                        init: 6,
-                        hp: 55,
-                        maxhp: 55,
-                        monster: false
-                    },
-                    {
-                        name: "Drako",
-                        init: 4,
-                        hp: 35,
-                        maxhp: 35,
-                        monster: false
-                    }, {
-                        name: "Thyr",
-                        init: 7,
-                        hp: 76,
-                        maxhp: 76,
-                        monster: false
-                    }, {
-                        name: "Ira",
-                        init: 3,
-                        hp: 57,
-                        maxhp: 57,
-                        monster: false
-                    }, {
-                        name: "Tar",
-                        init: 4,
-                        hp: 45,
-                        maxhp: 45,
-                        monster: false
-                    }, {
-                        name: "Mere",
-                        init: 5,
-                        hp: 49,
-                        maxhp: 49,
-                        monster: false
-                    }, {
-                        name: "Ariel",
-                        init: 8,
-                        hp: 22,
-                        maxhp: 22,
-                        monster: false
-                    }
-                ],
-                name: "Gigantes"
-            },
-            {
-                players: [
-                    {
-                        name: "Jinset",
-                        init: 1,
-                        hp: 69,
-                        maxhp: 69,
-                        monster: false
-                    }, {
-                        name: "Eudes",
-                        init: 2,
-                        hp: 57,
-                        maxhp: 57,
-                        monster: false
-                    }, {
-                        name: "Nagini",
-                        init: 4,
-                        hp: 41,
-                        maxhp: 41,
-                        monster: false
-                    }, {
-                        name: "Aremis",
-                        init: 5,
-                        hp: 54,
-                        maxhp: 54,
-                        monster: false
-                    }, {
-                        name: "kanrra",
-                        init: 2,
-                        hp: 61,
-                        maxhp: 61,
-                        monster: false
-                    }
-                ],
-                name: "Piratas"
-            }
-        ];
+        this.storyList = new _data_datPJ__WEBPACK_IMPORTED_MODULE_2__["DatPj"]();
+        this.monsterNumber = 1;
         this.order = 'init';
     }
+    InitUIComponent.prototype.ngOnInit = function () {
+    };
     InitUIComponent.prototype.optionsFn = function () {
-        console.log();
-        for (var index = 0; index < this.storyList.length; index++) {
-            if (this.storyList[index].name === this.selectStory) {
-                this.pjList = this.storyList[index].players;
+        for (var i = 0; i < this.storyList.list.length; i++) {
+            if (this.storyList.list[i].name === this.selectStory) {
+                this.pjList = this.storyList.list[i].players;
             }
         }
     };
-    InitUIComponent.prototype.ngOnInit = function () {
+    InitUIComponent.prototype.resetFunction = function () {
+        var originalList = new _data_datPJ__WEBPACK_IMPORTED_MODULE_2__["DatPj"]();
+        for (var i = 0; i < this.storyList.list.length; i++) {
+            if (this.storyList.list[i].name === this.selectStory) {
+                this.pjList = originalList.list[i].players;
+            }
+        }
     };
     InitUIComponent.prototype.damageEvent = function (item, damage) {
         var damageValue = Number(damage.value);
@@ -1204,7 +1253,7 @@ var InitUIComponent = /** @class */ (function () {
     };
     InitUIComponent.prototype.deleteElement = function (pj) {
         var _this = this;
-        var dialogRef = this.dialog.open(_modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmModalComponent"], {
+        var dialogRef = this.dialog.open(_modals_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmModalComponent"], {
             width: '300px',
             data: { name: pj }
         });
@@ -1220,7 +1269,7 @@ var InitUIComponent = /** @class */ (function () {
     };
     InitUIComponent.prototype.openGeneratedMonsterModal = function (pj) {
         var _this = this;
-        var dialogRef = this.dialog.open(_modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_4__["CreateMonsterModalComponent"], {
+        var dialogRef = this.dialog.open(_modals_create_monster_modal_create_monster_modal_component__WEBPACK_IMPORTED_MODULE_5__["CreateMonsterModalComponent"], {
             width: '500px'
         });
         dialogRef.afterClosed().subscribe(function (result) {
@@ -1237,7 +1286,7 @@ var InitUIComponent = /** @class */ (function () {
         }
         else {
             for (var i = 0; i < newMonsters.numberMonster; i++) {
-                var name_1 = "monster " + this.monsterNumber++;
+                var name_1 = newMonsters.nameMonster + " " + this.monsterNumber++;
                 var dice = Math.floor(Math.random() * 20) + 1;
                 var monster = { name: name_1, init: dice + newMonsters.init, hp: newMonsters.hp, maxhp: newMonsters.hp, monster: true };
                 this.pjList.push(monster);
@@ -1250,7 +1299,7 @@ var InitUIComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./init-ui.component.html */ "./src/app/init-ui/init-ui.component.html"),
             styles: [__webpack_require__(/*! ./init-ui.component.css */ "./src/app/init-ui/init-ui.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
     ], InitUIComponent);
     return InitUIComponent;
 }());
@@ -1344,7 +1393,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Crear monstruos</h1>\n<div mat-dialog-content>\n    <div class=\"form-group\">\n        <input type=\"number\" class=\"form-control\" [(ngModel)]=\"numberMonster\" placeholder=\"Cantidad de monstruos\">\n      </div>\n      <div class=\"form-group\" *ngIf=\"numberMonster === 1\">\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"nameMonster\" placeholder=\"Monster name\">\n      </div>\n      <div class=\"form-group\">\n        <input type=\"number\" class=\"form-control\" [(ngModel)]=\"initMonster\" placeholder=\"Bonus Iniciativa\">\n      </div>\n      <div class=\"form-group \">\n        <input type=\"number\" class=\"form-control\" [(ngModel)]=\"healPoints\" placeholder=\"Hp monstruos\">\n      </div>\n</div>\n<div mat-dialog-actions class=\"row\">\n    <div class=\"col-6\">\n      <button mat-button (click)=\"onNoClick()\">Cancelar</button>\n    </div>\n    <div class=\"col-6\">\n      <button mat-button (click)=\"openGeneratedMonsterModal(initMonster,numberMonster,healPoints,nameMonster)\" cdkFocusInitial>Crear</button>\n    </div>\n</div>"
+module.exports = "<h1 mat-dialog-title>Crear monstruos</h1>\n<div mat-dialog-content>\n    <div class=\"form-group\">\n        <input type=\"number\" class=\"form-control\" [(ngModel)]=\"numberMonster\" placeholder=\"Cantidad de monstruos\">\n      </div>\n      <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"nameMonster\" placeholder=\"Monster name\">\n      </div>\n      <div class=\"form-group\">\n        <input type=\"number\" class=\"form-control\" [(ngModel)]=\"initMonster\" placeholder=\"Bonus Iniciativa\">\n      </div>\n      <div class=\"form-group \">\n        <input type=\"number\" class=\"form-control\" [(ngModel)]=\"healPoints\" placeholder=\"Hp monstruos\">\n      </div>\n</div>\n<div mat-dialog-actions class=\"row\">\n    <div class=\"col-6\">\n      <button mat-button (click)=\"onNoClick()\">Cancelar</button>\n    </div>\n    <div class=\"col-6\">\n      <button mat-button (click)=\"openGeneratedMonsterModal(initMonster,numberMonster,healPoints,nameMonster)\" cdkFocusInitial>Crear</button>\n    </div>\n</div>"
 
 /***/ }),
 

@@ -6,6 +6,7 @@ import { ConfirmModalComponent } from '../modals/confirm-modal/confirm-modal.com
 import { CreateMonsterModalComponent } from '../modals/create-monster-modal/create-monster-modal.component';
 
 
+
 @Component({
   selector: 'app-init-ui',
   templateUrl: './init-ui.component.html',
@@ -18,34 +19,33 @@ export class InitUIComponent implements OnInit {
 
   }
   monsterNumber: number = 1;
-  selectStory:string;
-  pjList:Player[];
-
+  selectStory: string;
+  pjList;
   order: string = 'init';
 
+  ngOnInit() {
+  }
+
   optionsFn() {
-    
-    for (let i = 0; i < this.storyList.list.length; i++) {
-      if (this.storyList.list[i].name === this.selectStory) {
-        this.pjList = this.storyList.list[i].players
-      }
-    }
+    this.loadListPJ(this.storyList);
   }
 
   resetFunction() {
     let originalList: DatPj = new DatPj();
 
-    for (let i = 0; i < this.storyList.list.length; i++) {
-      if (this.storyList.list[i].name === this.selectStory) {
-        this.pjList = originalList.list[i].players
+    this.loadListPJ(originalList);
+
+  }
+
+  loadListPJ(listPj) {
+    listPj.list.forEach(data => {
+      if (data.name === this.selectStory) {
+        this.pjList = data.players;
       }
-    }
-  }
-
-
-  ngOnInit() {
+    })
 
   }
+
 
   damageEvent(item, damage) {
     let damageValue = Number(damage.value);
@@ -98,7 +98,7 @@ export class InitUIComponent implements OnInit {
     });
   }
 
-  openGeneratedMonsterModal(pj): void {
+  openGeneratedMonsterModal(): void {
     const dialogRef = this.dialog.open(CreateMonsterModalComponent, {
       width: '500px'
     });
