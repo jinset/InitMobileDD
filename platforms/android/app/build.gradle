@@ -268,6 +268,7 @@ dependencies {
     implementation(project(path: ":CordovaLib"))
     implementation "com.android.support:support-annotations:27.+"
     // SUB-PROJECT DEPENDENCIES END
+    implementation 'com.google.firebase:firebase-core:17.0.0'
 }
 
 def promptForReleaseKeyPassword() {
@@ -329,3 +330,4 @@ for (def func : cdvPluginPostBuildExtras) {
 if (hasProperty('postBuildExtras')) {
     postBuildExtras()
 }
+apply plugin: 'com.google.gms.google-services'

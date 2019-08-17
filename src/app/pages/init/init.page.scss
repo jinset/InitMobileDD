@@ -1,0 +1,38 @@
+ion-item {
+    --padding-start:0px !important;
+    --border-style: none;
+    --highlight-color-focused:none;
+}
+
+ion-button {
+    margin: 0px;
+    --box-shadow:none;
+}
+
+.init-btn{
+    font-size: 20px;
+    height: 70%;
+    --border-radius:none;
+}
+
+ion-input{
+    border: 1px solid #b4b4b4;
+    --padding-top:none;
+    --padding-bottom:none;
+    height: 70%;
+    text-align: center;
+}
+
+.row-style {
+    border-bottom: solid 1px #333333;
+}
+
+.hp-live {
+    color: green;
+}
+.hp-death {
+    color: rgba(231, 13, 13, 0.719);
+}
+.hp-null {
+    color: rgba(207, 207, 15, 0.719)
+}

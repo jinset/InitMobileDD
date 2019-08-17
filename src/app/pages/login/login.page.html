@@ -1,4 +1,5 @@
 <ion-content class="bg-img">
+
   <ion-row class="ion-float-right">
     <ion-col size="12">
       <ion-button [routerLink]="['/signup']" routerDirection="forward">
@@ -6,10 +7,7 @@
       </ion-button>
     </ion-col>
   </ion-row>
-
-
-
-
+  
   <ion-grid style="margin-top: 50%">
     <ion-row>
       <ion-col size="12">
@@ -18,26 +16,32 @@
           <ion-input [(ngModel)]="email"></ion-input>
         </ion-item>
       </ion-col>
+
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Password</ion-label>
           <ion-input [(ngModel)]="password" type="password"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col>
-        <ion-button (click)="goToSignup(email,password)">
-          Login
+
+      <ion-col size="12">
+          <ion-item>
+              <ion-label>Remember me</ion-label>
+              <ion-checkbox color="primary" [(ngModel)]="isChecked"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+      <ion-col padding class="ion-text-center">
+        <ion-button expand="full" [disabled]="!(password && email)" (click)="login(email,password)">
+          LOGIN
         </ion-button>
-
       </ion-col>
-
     </ion-row>
-
   </ion-grid>
 
-
-
-  <!-- [disabled]="!(password && email)" -->
-
-
+  <div class="btn-footer">
+    <ion-button expand="full" [routerLink]="['/signup']" routerDirection="forward">
+      CREATE AN ACCOUNT
+    </ion-button>
+  </div>
 </ion-content>

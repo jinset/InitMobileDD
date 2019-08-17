@@ -1,23 +1,42 @@
-<h1 mat-dialog-title>Crear monstruos</h1>
-<div mat-dialog-content>
-    <div class="form-group">
-        <input type="number" class="form-control" [(ngModel)]="numberMonster" placeholder="Cantidad de monstruos">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="nameMonster" placeholder="Monster name">
-      </div>
-      <div class="form-group">
-        <input type="number" class="form-control" [(ngModel)]="initMonster" placeholder="Bonus Iniciativa">
-      </div>
-      <div class="form-group ">
-        <input type="number" class="form-control" [(ngModel)]="healPoints" placeholder="Hp monstruos">
-      </div>
-</div>
-<div mat-dialog-actions class="row">
-    <div class="col-6">
-      <button mat-button (click)="onNoClick()">Cancelar</button>
-    </div>
-    <div class="col-6">
-      <button mat-button (click)="openGeneratedMonsterModal(initMonster,numberMonster,healPoints,nameMonster)" cdkFocusInitial>Crear</button>
-    </div>
-</div>
+<ion-content>
+    <ion-row align-items-start>
+      <ion-col size="12">
+        <ion-buttons (click)='dismiss(false)' style="font-size: 35px;">
+          <ion-icon name="close"></ion-icon>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-grid >
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Number of monster</ion-label>
+            <ion-input [(ngModel)]="numberMonster"  type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Name of monster(s)</ion-label>
+            <ion-input [(ngModel)]="nameMonster" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Init of monster(s)</ion-label>
+            <ion-input [(ngModel)]="initMonster" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">HP of monster(s)</ion-label>
+            <ion-input [(ngModel)]="healPointsMonster" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="created()">
+            Accept
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

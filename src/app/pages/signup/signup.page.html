@@ -6,45 +6,54 @@
       </ion-buttons>
     </ion-col>
   </ion-row>
+  <ion-grid>
+    <ion-row padding>
+      <ion-col size="12" >
+        <ion-item>
+          <ion-label position="floating">Nick Name</ion-label>
+          <ion-input [(ngModel)]="nickName"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">E-Mail</ion-label>
+          <ion-input [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
 
-  <div padding>
-    <ion-item>
-      <ion-label position="floating">Nick Name</ion-label>
-      <ion-input [(ngModel)]="nickName"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+        </ion-item>
+      </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">E-Mail</ion-label>
-      <ion-input [(ngModel)]="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Confirm Password</ion-label>
-      <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
-    </ion-item>
-
-    <ion-button (click)="signup(email,password,nickName)" [disabled]="!(this.nickName && this.email && this.password && this.confirmPassword)" style="width: 100%">
-      Create account
-    </ion-button>
-
-  </div>
-
-  <!-- <div class="sepretor-or" padding-horizontal>
-    <p>Or</p>
-  </div>
+      <ion-col padding class="ion-text-center">
+        <ion-button (click)="signup(email,password,nickName)"
+          [disabled]="!(this.nickName && this.email && this.password && this.confirmPassword)" style="width: 100%">
+          Create account
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
+
+
+
+  <!-- 
   <ion-row padding>
     <ion-col size="12">
       <button padding ion-button class="google" (click)="socialLogin('google')">
         <ion-icon name="logo-google" style="margin-right: 12px;"></ion-icon>SIGN UP WITH GOOGLE
       </button>
     </ion-col>
-  </ion-row> -->
+  </ion-row>  -->
 
 </ion-content>

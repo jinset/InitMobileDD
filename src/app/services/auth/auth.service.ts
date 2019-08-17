@@ -1,90 +1,65 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore"
-import { User, auth } from 'firebase';
-
-import { map, switchMap } from 'rxjs/operators';
+import { AngularFirestore } from "@angular/fire/firestore"
+import { auth } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: User;
-  usersCollection: AngularFirestoreCollection<any>;
-  collection: any;
-  constructor(public afAuth: AngularFireAuth, public afStore: AngularFirestore, public router: Router) {
-    // this.afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     this.user = user;
-    //     localStorage.setItem('user', JSON.stringify(this.user));
-    //   } else {
-    //     localStorage.setItem('user', null);
-    //   }
-    // })
-
-
+  constructor(
+    public afAuth: AngularFireAuth, 
+    public afStore: AngularFirestore, 
+    public router: Router, 
+    private storage: Storage) {
   }
 
-
   login(email: string, password: string) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(userInfo => {
-          resolve([true, this.afAuth.auth.currentUser])
+          if (userInfo.user.emailVerified) {
+            resolve(this.afAuth.auth.currentUser)
+          } else {
+            reject(`Please, verified your e-mail <b>${email}</b>`);
+          }
         })
         .catch(err => {
-          resolve([false, err.message]);
+          reject(err.message);
         })
     })
   }
 
-  addNewAccount(email: string, nickName: string, uid: number) {
-    return new Promise((resolve) => {
+  async addNewAccount(email: string, nickName: string) {
+    return new Promise((resolve,reject) => {
       this.afStore.collection("users").add({
         nickName: nickName,
         email: email,
-        UID: uid,
-        stories: []
-      }).then(() => {
-        resolve(true)
+        date: new Date()
+      }).catch(err => {
+        reject(err.message)
       })
-        .catch(err => {
-          resolve([false, err.message])
-        })
     })
   }
 
-  register(email: string, password: string, nickName: string) {
-    return new Promise((resolve) => {
-      this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(result => {
-        resolve(this.addNewAccount(email, nickName, Number(result.user.uid)))
+   register(email: string, password: string, nickName: string) {
+    return new Promise(async (resolve,reject) => {
+      await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(()=>{
       })
-        .catch(err => {
-          resolve([false, err.message])
-        })
+      .then( async ()=>{
+        await this.addNewAccount(email, nickName)
+      })
+      .then(()=>{
+        resolve(this.afAuth.auth.currentUser.sendEmailVerification());
+      }).catch(err => {
+        reject(err.message)
+      })
     })
-    // this.sendEmailVerification();
   }
 
-
-  returnUsers() {
-    this.usersCollection = this.afStore.collection<any>('users');
-
-    return this.collection = this.usersCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => ({
-        ...a.payload.doc.data(), id: a.payload.doc.id
-      })))
-    );
-  }
-
-
-
-  async sendEmailVerification() {
-    await this.afAuth.auth.currentUser.sendEmailVerification()
-    this.router.navigate(['admin/verify-email']);
-  }
 
   async sendPasswordResetEmail(passwordResetEmail: string) {
     return await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
@@ -92,14 +67,16 @@ export class AuthService {
 
   async logout() {
     await this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
-    this.router.navigate(['admin/login']);
+    await this.storage.remove('userUID');
+    await this.storage.remove('rememberUser')
+
+    this.router.navigate(['login']);
   }
 
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null;
-  }
+  // get isLoggedIn(): boolean {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   return user !== null;
+  // }
 
   async loginWithGoogle() {
     await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())

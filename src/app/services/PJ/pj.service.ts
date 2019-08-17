@@ -9,6 +9,11 @@ export class PJService {
   constructor(public afStore: AngularFirestore) { }
 
 
+  /**
+   * Return players by story
+   * @param storyID 
+   * @param actualUserID 
+   */
   getPJsByStory(storyID, actualUserID){
     let data:Array<any> = [];
     let pjs = this.afStore.collection(`users`).doc(actualUserID).collection(`stories`).doc(storyID).collection(`characters`);
@@ -22,28 +27,43 @@ export class PJService {
     })
   }
 
+  /**
+   * Update the information of a player
+   * @param storyID 
+   * @param actualUserID 
+   * @param uidPJ 
+   * @param data 
+   */
   updatePJ(storyID, actualUserID, uidPJ, data){
-    let pj = this.afStore.collection(`users`).doc(actualUserID).collection(`stories`).doc(storyID).collection(`characters`).doc(uidPJ);
+    const pj = this.afStore.collection(`users`).doc(actualUserID).collection(`stories`).doc(storyID).collection(`characters`).doc(uidPJ);
 
     return new Promise((resolve,reject) =>{
-      pj.update(data).then(() =>{
-        resolve("Document successfully updated!")
-      }).catch(err =>{
-        reject(err)
-      })
+      pj.update(data)
+      .then(() =>resolve("Document successfully updated!")), (err =>reject(err))
     })
   }
 
+  /**
+   * Delete a player
+   * @param storyID 
+   * @param actualUserID 
+   * @param uidPJ 
+   */
   deletePJ(storyID, actualUserID, uidPJ){
-    let pj = this.afStore.collection(`users`).doc(actualUserID).collection(`stories`).doc(storyID).collection(`characters`).doc(uidPJ);
+    const pj = this.afStore.collection(`users`).doc(actualUserID).collection(`stories`).doc(storyID).collection(`characters`).doc(uidPJ);
 
     return new Promise((resolve,reject) =>{
-      pj.delete().then(() =>{
-        resolve("Document successfully updated!")
-      })
+      pj.delete()
+      .then(() =>resolve("Document successfully delete it!"), err => reject(err))
     })
   }
 
+  /**
+   * Create a new player
+   * @param storyID 
+   * @param actualUserID 
+   * @param data 
+   */
   createPJ(storyID, actualUserID, data){
     let pj = this.afStore.collection(`users`).doc(actualUserID).collection(`stories`).doc(storyID).collection(`characters`);
 

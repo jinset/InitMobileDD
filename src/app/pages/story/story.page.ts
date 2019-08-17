@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras } from "@angular/router";
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class StoryPage implements OnInit {
   story: any;
 
-  constructor(private storage:Storage, private route: ActivatedRoute, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(private storage:Storage, private route: ActivatedRoute, public navCtrl: NavController) {
 
     this.route.queryParams.subscribe(params => {
       this.story = params;

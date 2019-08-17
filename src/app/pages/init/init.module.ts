@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { InitPage } from './init.page';
+import { OrderModule } from 'ngx-order-pipe';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    OrderModule,
     RouterModule.forChild(routes)
   ],
   declarations: [InitPage]

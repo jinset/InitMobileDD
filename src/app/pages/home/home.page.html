@@ -1,15 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="logOut()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Stories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides [pager]="checkLength" [options]="slideOpts" *ngIf="checkLength">
     <ion-slide *ngFor="let story of storiesList " (click)="goToStory(story)">
-      <ion-card style="width: 100%">
-        <ion-card-header>
-          <ion-card-title>{{story.story.name}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-      </ion-card>
+      <div style="height: 100%; width: 80%;">
+        <div>
+          {{story.story.name}}
+        </div>
+
+        <ion-textarea style="height: 100% !important" readonly autoGrow="true" placeholder={{story.story.description}}>
+        </ion-textarea>
+      </div>
     </ion-slide>
-  </ion-slides>  
+  </ion-slides>
+
+<!-- 
+  <div *ngIf="!checkLength">
+    imagen diciendo que agregue historias
+  </div> -->
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openModel(false)">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

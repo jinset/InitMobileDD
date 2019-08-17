@@ -1,11 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/story"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Character</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <ion-row align-items-start>
-    <ion-col size="12">
-      <ion-buttons>
-        <ion-back-button defaultHref="/story"></ion-back-button>
-      </ion-buttons>
-    </ion-col>
-  </ion-row>
   <div class="" *ngFor="let pj of pjsList">
     <ion-item>
       <ion-label>
@@ -17,10 +18,14 @@
       <ion-label>
         HP: {{pj.character.maxHp}}
       </ion-label>
-      <ion-icon style="color: green" name="create" slot="end" (click)="openEdit(pj,edit)" ></ion-icon>
-      <ion-icon style="color: red" name="trash" slot="end" (click)="delete(pj.id)"></ion-icon>
+      <ion-icon style="color: green" name="create" slot="end" (click)="openEdit(pj,edit)"></ion-icon>
+      <ion-icon style="color: red" name="trash" slot="end" (click)="delete(pj)"></ion-icon>
     </ion-item>
   </div>
 
-<button (click)="openEdit(false)">crear</button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openEdit(false)">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

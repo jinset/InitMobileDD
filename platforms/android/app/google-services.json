@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "994174756885",
+    "firebase_url": "https://ddinit-8a8d2.firebaseio.com",
+    "project_id": "ddinit-8a8d2",
+    "storage_bucket": "ddinit-8a8d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994174756885:android:499c86bc5d789dfb",
+        "android_client_info": {
+          "package_name": "com.jinsoft.initDD"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994174756885-l9j1122q63rumr1hquipf1pgh67j2e90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyBsUyVIUg1fLjELcxbSfT2pmSUn_9sj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994174756885-l9j1122q63rumr1hquipf1pgh67j2e90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
