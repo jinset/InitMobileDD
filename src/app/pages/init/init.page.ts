@@ -53,6 +53,25 @@ export class InitPage implements OnInit {
     this.loading = this.loadingService.hideLoading();
   }
 
+  async reset(){
+    await this.alertService.showAlert("Are you sure?",`Do you want to reset?, This process cannot be undone`).then(async data =>{
+      if(data){
+        this.loading = this.loadingService.showLoading();
+        this.pjsList = [];
+        let list: any
+        const userID = await this.storage.get('userUID');
+        const storyID = await this.storage.get('storyID');
+        await this.storage.remove(this.initID);
+    
+        list = await this.pJService.getPJsByStory(storyID, userID);
+        list.forEach(element => {
+          this.pjsList.push(element.character)
+        });
+        this.loading = this.loadingService.hideLoading();
+      }
+    })
+  }
+
 
 
   damageEvent(item, damage) {

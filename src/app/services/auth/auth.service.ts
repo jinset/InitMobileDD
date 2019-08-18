@@ -33,7 +33,7 @@ export class AuthService {
     })
   }
 
-  async addNewAccount(email: string, nickName: string) {
+  addNewAccount(email: string, nickName: string) {
     return new Promise((resolve,reject) => {
       this.afStore.collection("users").add({
         nickName: nickName,
@@ -48,11 +48,9 @@ export class AuthService {
    register(email: string, password: string, nickName: string) {
     return new Promise(async (resolve,reject) => {
       await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(()=>{
-      })
-      .then( async ()=>{
-        await this.addNewAccount(email, nickName)
-      })
-      .then(()=>{
+      }).then(()=>{
+        this.addNewAccount(email, nickName)
+      }).then(()=>{
         resolve(this.afAuth.auth.currentUser.sendEmailVerification());
       }).catch(err => {
         reject(err.message)

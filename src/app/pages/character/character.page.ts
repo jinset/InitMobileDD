@@ -72,7 +72,6 @@ export class CharacterPage implements OnInit {
           this.loadPjs();
         })
       }
-
     })
   }
 
