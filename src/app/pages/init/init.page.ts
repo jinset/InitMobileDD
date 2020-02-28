@@ -23,7 +23,7 @@ export class InitPage implements OnInit {
     public navCtrl: NavController, 
     private storage: Storage, 
     private pJService: PJService,
-    public alertService:AlertService,
+    public alertService: AlertService,
     public modalController: ModalController) {
   }
 
@@ -58,14 +58,14 @@ export class InitPage implements OnInit {
       if(data){
         this.loading = this.loadingService.showLoading();
         this.pjsList = [];
-        let list: any
+        let list: any;
         const userID = await this.storage.get('userUID');
         const storyID = await this.storage.get('storyID');
         await this.storage.remove(this.initID);
     
         list = await this.pJService.getPJsByStory(storyID, userID);
         list.forEach(element => {
-          this.pjsList.push(element.character)
+          this.pjsList.push(element.character);
         });
         this.loading = this.loadingService.hideLoading();
       }
@@ -108,10 +108,8 @@ export class InitPage implements OnInit {
     if (initValue > 0 && initValue <= 20) {
       item.init = item.init + initValue;
       inputID.value = "";
-      this.storage.set(this.initID, this.pjsList)
-
+      this.storage.set(this.initID, this.pjsList);
     }
-
   }
 
 
@@ -141,8 +139,6 @@ export class InitPage implements OnInit {
     })
     await modal.present();
   }
-
-
 
   generatedMonster(newMonsters) {
     if (newMonsters.numberMonster === 1) {

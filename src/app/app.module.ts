@@ -15,13 +15,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CreateMonsterModalComponent } from './modals/create-monster-modal/create-monster-modal.component';
 import { EditPjComponent } from './modals/edit-pj/edit-pj.component';
-import { StoryComponent } from "./modals/story/story.component";
+import { StoryComponent } from './modals/story/story.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
+import { LoginGuardService } from './services/login-guard.service';
 
 @NgModule({
   declarations: [
@@ -29,20 +30,21 @@ import { environment } from '../environments/environment';
     CreateMonsterModalComponent,
     EditPjComponent,
     StoryComponent],
-  imports: [BrowserModule, 
-    IonicModule.forRoot(), 
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
-    AppRoutingModule, 
-    FormsModule, 
-    IonicStorageModule.forRoot()    ,
-    BrowserAnimationsModule, 
-    NoopAnimationsModule, 
+    AppRoutingModule,
+    FormsModule,
+    IonicStorageModule.forRoot(),
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule],
   providers: [
     StatusBar,
-    SplashScreen, 
+    SplashScreen,
     AngularFireAuth,
+    LoginGuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} }
   ],

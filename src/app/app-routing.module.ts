@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginGuardService } from './services/login-guard.service';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: '',loadChildren: './pages/login/login.module#LoginPageModule' , canActivate: [LoginGuardService]},
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule'  },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
 
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
